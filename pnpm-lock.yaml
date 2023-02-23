@@ -25,6 +25,7 @@ specifiers:
   eslint-plugin-prettier: ^4.2.1
   eslint-plugin-promise: ^6.0.0
   eslint-plugin-vue: ^9.9.0
+  font-awesome: ^4.7.0
   husky: ^8.0.3
   lint-staged: ^13.1.2
   lodash-es: ^4.17.21
@@ -51,6 +52,7 @@ dependencies:
   bootstrap: 5.2.3_@popperjs+core@2.11.6
   dayjs: 1.11.7
   echarts: 5.4.1
+  font-awesome: 4.7.0
   lodash-es: 4.17.21
   mockjs: 1.1.0
   normalize.css: 8.0.1
@@ -1689,6 +1691,11 @@ packages:
     peerDependenciesMeta:
       debug:
         optional: true
+    dev: false
+
+  /font-awesome/4.7.0:
+    resolution: {integrity: sha512-U6kGnykA/6bFmg1M/oT9EkFeIYv7JlX3bozwQJWiiLz6L0w3F5vBVPxHlwyX/vtNq1ckcpRKOB9f2Qal/VtFpg==}
+    engines: {node: '>=0.10.3'}
     dev: false
 
   /for-each/0.3.3:

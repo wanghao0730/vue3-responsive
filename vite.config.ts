@@ -1,7 +1,6 @@
 import type { UserConfig, ConfigEnv } from 'vite'
 import path, { resolve } from 'path'
-import { defineConfig, loadEnv } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import { loadEnv } from 'vite'
 import { createVitePlugins } from './build/vite/plugins'
 //地址解析
 function pathResolve(dir: string) {
@@ -16,7 +15,7 @@ function pathResolve(dir: string) {
 //   },
 // });
 
-export default ({ command, mode, ssrBuild }: ConfigEnv): UserConfig => {
+export default ({ command, mode }: ConfigEnv): UserConfig => {
   const root = process.cwd()
 
   const env = loadEnv(mode, root)
@@ -27,7 +26,7 @@ export default ({ command, mode, ssrBuild }: ConfigEnv): UserConfig => {
   //   "~bootstrap": path.resolve(__dirname, "node_modules/bootstrap"),
   // },
   return {
-    base: '/',
+    base: './',
     resolve: {
       alias: [
         {
@@ -49,7 +48,7 @@ export default ({ command, mode, ssrBuild }: ConfigEnv): UserConfig => {
     },
     server: {
       host: true,
-      open: true,
+      // open: true,
     },
     build: {
       target: 'es2015',

@@ -3,4 +3,4 @@
 
 #如果.git文件和.husky不是同一个目录的情况下 可以在这里cd 一级目录/二级目录
 #执行lint-staged
-# npm run lint-staged
+npm run lint-staged

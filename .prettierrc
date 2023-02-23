@@ -5,7 +5,6 @@
   "semi": false,
   "singleQuote": true,
   "arrowParens": "avoid",
-  "ignorePath": ".prettierignore",
   "jsxBracketSameLine": false,
   "jsxSingleQuote": true,
   "trailingComma": "all",
