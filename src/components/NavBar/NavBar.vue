@@ -1,4 +1,37 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { reactive } from 'vue'
+interface INavBarName {
+  id: number
+  name: string
+  router: string
+  disable?: boolean
+  childrens: INavBarName[]
+}
+
+//定义向上发送的事件
+const emit = defineEmits<{
+  (e: 'routeChange', route: any): void
+}>()
+
+//数组内容
+const navList = reactive<INavBarName[]>([
+  { id: 1, name: '首页', router: 'home', childrens: [] },
+  {
+    id: 2,
+    name: '关于',
+    router: 'about',
+    childrens: [],
+  },
+  { id: 3, name: '功能', router: 'pages', childrens: [] },
+])
+
+/**
+ * 点击切换向上发送事件
+ */
+const handlerRoute = (route: INavBarName) => {
+  emit('routeChange', route)
+}
+</script>
 
 <template>
   <header>
@@ -66,38 +99,41 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div
-          class="collapse navbar-collapse navbar-right"
+          class="collapse navbar-collapse justify-content-end"
           id="navbarSupportedContent"
         >
           <ul class="navbar-nav bg-dark">
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
+            <template v-for="item in navList" :key="item.id">
+              <template
+                v-if="
+                  item.childrens && Object.keys(item.childrens).length === 0
+                "
               >
-                Dropdown
-              </a>
-              <ul class="dropdown-menu bg-dark">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><hr class="dropdown-divider" /></li>
-                <li>
-                  <a class="dropdown-item" href="#">Something else here</a>
+                <li class="nav-item" @click="handlerRoute(item)">
+                  <a class="nav-link" aria-current="page" href="javascript:;">
+                    {{ item.name }}
+                  </a>
                 </li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled">Disabled</a>
-            </li>
+              </template>
+              <template v-else>
+                <li class="nav-item dropdown" @click="handlerRoute(item)">
+                  <a
+                    class="nav-link dropdown-toggle"
+                    href="#"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    {{ item.name }}
+                  </a>
+                  <ul class="dropdown-menu bg-dark">
+                    <li v-for="cItem in item.childrens" :key="cItem.id">
+                      <a class="dropdown-item" href="#">{{ item.name }}</a>
+                    </li>
+                  </ul>
+                </li></template
+              >
+            </template>
           </ul>
         </div>
       </div>

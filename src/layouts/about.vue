@@ -121,8 +121,7 @@ onMounted(() => {
         </button>
       </div>
     </section>
-
-    <!-- 又是一个section -->
+    <!-- 内部内容 -->
     <section class="feature">
       <div class="container">
         <div

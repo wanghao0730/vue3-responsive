@@ -9,6 +9,6 @@ export const getAsserts = (url: string) => {
   const fileImg = import.meta.glob(`/src/assets/images/**/*`, {
     eager: true,
   }) as Record<string, any>
-  console.log(fileImg[imgPath])
+  console.log(fileImg)
   return fileImg[imgPath].default
 }
